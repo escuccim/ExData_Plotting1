@@ -1,4 +1,4 @@
-## File plot2.R
+## File plot4.R
 ## By Eric Scuccimarra (skooch@gmail.com)
 ## 2017-12-20
 ## Reads data in from file, subsets it, and creates plot
@@ -17,7 +17,21 @@ if(!exists("power_data")){
     power_data$Date <- as.Date(power_data$Date, '%d/%m/%Y')
 }
 
-png(filename="plot2.png",width=480,height=480)
+png(filename="plot4.png",width=480,height=480)
+par(mfrow=c(2,2))
+# First
 plot(power_data$DateTime, power_data$Global_active_power, type="l", xlab="", ylab="Global Active Power")
+
+# Second
 plot(power_data$DateTime, power_data$Voltage, type="l",xlab="datetime",ylab="Voltage")
+
+# Third
+plot(power_data$DateTime, power_data$Sub_metering_1, col="black", type="l", xlab="", ylab="Energy sub metering")
+lines(power_data$DateTime, power_data$Sub_metering_2, col="red", type="l")
+lines(power_data$DateTime, power_data$Sub_metering_3, col="blue", type="l")
+legend("topright",legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),col=c("black","red","blue"),lty=c(1,1,1),bty="n")
+
+# Fourth
+plot(power_data$DateTime, power_data$Global_reactive_power, ylab="Global_reactive_power", xlab="datetime", type="l")
+
 dev.off()
