@@ -1,4 +1,4 @@
-## File plot1.R
+## File plot2.R
 ## By Eric Scuccimarra (skooch@gmail.com)
 ## 2017-12-20
 ## Reads data in from file, subsets it, and creates plot
@@ -17,8 +17,6 @@ if(!exists("power_data")){
     power_data$Date <- as.Date(power_data$Date, '%d/%m/%Y')
 }
 
-
-# Plot the data
-png(filename="plot1.png",width=480,height=480)
-hist(power_data$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+png(filename="plot2.png",width=480,height=480)
+plot(power_data$DateTime, power_data$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)")
 dev.off()
